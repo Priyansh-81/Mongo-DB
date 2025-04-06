@@ -1,0 +1,54 @@
+show dbs
+
+use 230953450_DB
+
+db.createCollection("230953450_Collection")
+
+db.getCollection("230953450_Collection").insertOne({Name: "Chandra", LaunchDate: new Date("1999-07-23")})
+
+db.getCollection("230953450_Collection").insertMany([{Name: "Euclid", LaunchDate: new Date("2023-07-01"), Organization: "ESA", Age: 2}, {Name: "Fermin Gamma-Ray space telescope", LaunchDate: new Date("2008-06-11"), Organization: "NASA", Age: 17}, {Name: "XMM Newton", LaunchDate: new Date("1999-12-10"), Organization: "ESA", Age: 25}, {Name: "TESS", LaunchDate: new Date("2018-04-18"), Organization: "NASA", Age: 7}, {Name: "NEOWISE", LaunchDate: new Date("2009-12-14"), Organization: "NASA"}])
+
+db.getCollection("230953450_Collection").insertOne({Name: "NICER", LaunchDate: new Date("2017-06-03"), Age: 7, Organization: "NASA"})
+
+db.getCollection("230953450_Collection").insertOne({Name: "XRISM", LaunchDate: new Date("2023-09-06"), Age: 2, Organization: "NASA"})
+
+db.getCollection("230953450_Collection").insertOne({Name: "NuSTAR", LaunchDate: new Date("2012-06-13"), Age: 13, Organization: "NASA"})
+
+db.getCollection("230953450_Collection").insertOne({Name: "James Webb Telescope", LaunchDate: new Date("2021-12-25"), Age: 4, Organization: "NASA"})
+
+
+db.getCollection("230953450_Collection").find()
+
+db.getCollection("230953450_Collection").find().sort({age: 1})
+db.getCollection("230953450_Collection").find().sort({age: -1})
+
+db.getCollection("230953450_Collection").find().sort({name: 1})
+db.getCollection("230953450_Collection").find().sort({name: -1})
+
+db.getCollection("230953450_Collection").find({},{Name: true, _id: false})
+
+db.getCollection("230953450_Collection").find({Organization: "NASA"},{Name: true, _id: false})
+
+db.getCollection("230953450_Collection").find({Organization: "NASA"},{Name: true, _id: false}).sort({Name: -1})
+
+db.getCollection("230953450_Collection").find({Organization: "NASA"},{Name: true, _id: false}).sort({Name: -1}).limit(1)
+
+//update
+
+db.getCollection("230953450_Collection").find({},{_id: false})
+
+db.getCollection("230953450_Collection").updateMany({submitted_by: {$exists: false}},{$set: {submitted_by: "230953450_priyanshnandan"}})
+
+
+db.getCollection("230953450_Collection").find({Name: "NICER"})
+
+db.getCollection("230953450_Collection").updateOne({Name: "NICER"},{$set: {Age: 6}})
+
+
+db.getCollection("230953450_Collection").find({},{_id: false, Name: true})
+
+db.getCollection("230953450_Collection").deleteOne({Name: "XRISM"})
+
+db.getCollection("230953450_Collection").find({Organization: "ESA"},{_id: false, Name: true})
+
+db.getCollection("230953450_Collection").deleteMany({Organization: "ESA"})
